@@ -21,10 +21,7 @@ interface PaginationProps {
   } )
   
   
-  useEffect(() =>{
-    console.log(valueInput);
-
-    
+  useEffect(() =>{  
     if(valueInput <= patitionLenght && valueInput >= 1){
       setValue(valueInput)   
     }else{
@@ -70,7 +67,7 @@ const handleonClickRight =()=>{
           <button className='w-[35px] h-[35px] border-2 border-solid flex justify-center items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700 disabled:opacity-75 disabled:border-none' disabled={value <= 1}  onClick={handleonClickpaginationLeft}><AiOutlineLeft className='icons' /></button>
           <input className='w-[40px] h-[35px] border border-solid text-center  shadow-sm' type={'number'} value={value} 
           onChange={(e)=>{ 
-           const page = +e.target.value >  patitionLenght ? 1:  Number(e.target.value)  
+           const page = +e.target.value >  patitionLenght ? 1:  +e.target.value  
           setValue(page)
            }}
           />
