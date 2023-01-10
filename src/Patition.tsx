@@ -1,63 +1,61 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { Data } from './fakeData/Data'
 import {AiOutlineLeft, AiOutlineDoubleLeft, AiOutlineDoubleRight, AiOutlineRight} from 'react-icons/ai'
 
+interface PaginationProps {
+  valueInput: number,
+  lenght: number
+}
 
-type Props = {}
 
- export const Patition:React.VFC = () => {
+ export const Patition = ({valueInput, lenght}: PaginationProps) => {
   const [value, setValue] = useState<number>(1);
-
-  const dataLenght = Data.length;  
+  
+  const dataLenght = lenght || Data.length;  
   const patitionLenght = Math.ceil(dataLenght/5);
   
-  const datapatition = Data.reduce((ar1:any, ar2 ,  index) => {
-  if(index >= (value *5 -5 ) && index < (value*5)){
-    ar1.push(ar2);
-  }
-  return ar1;
-  }, [])
+  const datapatition = Data.filter((arr, index) => {
+    if(index >= (value *5 -5 ) && index < (value*5)){
+      return arr
+    }
+  } )
+  
+  
+  useEffect(() =>{
+    console.log(valueInput);
+
+    
+    if(valueInput <= patitionLenght && valueInput >= 1){
+      setValue(valueInput)   
+    }else{
+      
+      setValue(1)
+    }
+  },[valueInput, patitionLenght])
 
   const handleonClickLeft = () =>{
-    if( ( value - 10) >1){
-      setValue(value-10)
-    }
-    else{
-      setValue(1)
-   
-    }
+  setValue(Math.max(value-10,1))
   }
 
   const handleonClickpaginationLeft = () => {
-         if(value !== 1   ){
+         if(value > 1   ){
           setValue(value-1);
 
-        }
-        else if (value == 1) {
-          setValue(1);
-      
-        }
-    
+        }  
   }
-
+ 
 
   const handleonClickpaginationRight = () => {
     if(value < patitionLenght ){
      setValue(value + 1);
     }
-    else{
-     setValue(patitionLenght);
-    }
 }
  
 const handleonClickRight =()=>{
-  if(value + 10  <patitionLenght){
-    setValue(value+10)
-
-  }else{
-    setValue(patitionLenght)
-  }
+  setValue(Math.min(patitionLenght, value + 10))
 }
+
+
 
   return (
     <div>
@@ -70,11 +68,10 @@ const handleonClickRight =()=>{
           <p className=' text-lg font-semibold'>{dataLenght} items</p>
           <button className='w-[35px] h-[35px] border-2 border-solid flex justify-center items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700 disabled:opacity-75 disabled:border-none' disabled={value <= 1}  onClick={handleonClickLeft}><AiOutlineDoubleLeft  className='icons'/></button>
           <button className='w-[35px] h-[35px] border-2 border-solid flex justify-center items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700 disabled:opacity-75 disabled:border-none' disabled={value <= 1}  onClick={handleonClickpaginationLeft}><AiOutlineLeft className='icons' /></button>
-          <input className='w-[40px] h-[35px] border border-solid text-center  shadow-sm' type={'text'}  value={value }
-          onChange={e =>{
-             const page = + e.target.value <= patitionLenght ?  Number(e.target.value) : 1 
-           
-            setValue(page)
+          <input className='w-[40px] h-[35px] border border-solid text-center  shadow-sm' type={'number'} value={value} 
+          onChange={(e)=>{ 
+           const page = +e.target.value >  patitionLenght ? 1:  Number(e.target.value)  
+          setValue(page)
            }}
           />
            <p className='font-semibold text-base '> of {patitionLenght}</p>

@@ -16,3 +16,7 @@ export default {
 const Template: ComponentStory<typeof Patition>=(args) =><Patition {...args}></Patition>
 
 export const Demo = Template.bind({});
+Demo.args ={
+    valueInput: 1,
+    lenght: 70,
+}
