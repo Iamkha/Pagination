@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, {  useEffect, useRef, useState } from 'react'
 import { Data } from './fakeData/Data'
 import {AiOutlineLeft, AiOutlineDoubleLeft, AiOutlineDoubleRight, AiOutlineRight} from 'react-icons/ai'
 
@@ -9,16 +9,19 @@ interface PaginationProps {
 
 
  export const Patition = ({valueInput, lenght}: PaginationProps) => {
-  const [value, setValue] = useState<number>(1);
+  const [value, setValue] = useState<any>(1);
+  const valueRef = useRef(value);
   
   const dataLenght = lenght || Data.length;  
   const patitionLenght = Math.ceil(dataLenght/5);
   
   const datapatition = Data.filter((arr, index) => {
-    if(index >= (value *5 -5 ) && index < (value*5)){
+    if( index >= (value *5 -5 ) && index < (value*5)){
+      return arr
+    } else if( value== '' &&  index >= (valueRef.current *5 -5 ) && index < (valueRef.current*5)){
       return arr
     }
-  } )
+  })
   
   
   useEffect(() =>{  
@@ -30,6 +33,12 @@ interface PaginationProps {
     }
   },[valueInput, patitionLenght])
 
+
+  useEffect(() =>{
+    valueRef.current = value
+  },[value])
+  
+  
   const handleonClickLeft = () =>{
   setValue(Math.max(value-10,1))
   }
@@ -68,7 +77,7 @@ const handleonClickRight =()=>{
           <input className='w-[40px] h-[35px] border border-solid text-center  shadow-sm' type={'number'} value={value} 
           onChange={(e)=>{ 
            const page = +e.target.value >  patitionLenght ? 1:  +e.target.value  && +e.target.value < 1 ? 1 :  +e.target.value
-          setValue(page)
+          setValue(page === 0 ? '' : page)
            }}
           />
            <p className='font-semibold text-base '> of {patitionLenght}</p>
