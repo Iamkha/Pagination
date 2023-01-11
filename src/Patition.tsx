@@ -4,21 +4,23 @@ import {AiOutlineLeft, AiOutlineDoubleLeft, AiOutlineDoubleRight, AiOutlineRight
 
 interface PaginationProps {
   valueInput: number,
-  lenght: number
+  lenght: number,
+  item: number,
+  lenghtonClick: number
 }
 
 
- export const Patition = ({valueInput, lenght}: PaginationProps) => {
+ export const Patition = ({valueInput, lenght , item , lenghtonClick}: PaginationProps) => {
   const [value, setValue] = useState<any>(1);
-  const valueRef = useRef(value);
+  const valueRef = useRef<any>(value);
   
   const dataLenght = lenght || Data.length;  
-  const patitionLenght = Math.ceil(dataLenght/5);
+  const patitionLenght = Math.ceil(dataLenght/item);
   
   const datapatition = Data.filter((arr, index) => {
-    if( index >= (value *5 -5 ) && index < (value*5)){
+    if( index >= (value *item -item ) && index < (value*item)){
       return arr
-    } else if( value== '' &&  index >= (valueRef.current *5 -5 ) && index < (valueRef.current*5)){
+    } else if( value== '' &&  index >= (valueRef.current *item -item ) && index < (valueRef.current*item)){
       return arr
     }
   })
@@ -40,7 +42,7 @@ interface PaginationProps {
   
   
   const handleonClickLeft = () =>{
-  setValue(Math.max(value-10,1))
+  setValue(Math.max(value-lenghtonClick,1))
   }
 
   const handleonClickpaginationLeft = () => {
@@ -58,7 +60,7 @@ interface PaginationProps {
 }
  
 const handleonClickRight =()=>{
-  setValue(Math.min(patitionLenght, value + 10))
+  setValue(Math.min(patitionLenght, value + lenghtonClick))
 }
 
 

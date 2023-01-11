@@ -19,4 +19,6 @@ export const Demo = Template.bind({});
 Demo.args ={
     valueInput: 1,
     lenght: 70,
+    item: 5,
+    lenghtonClick:10,
 }
