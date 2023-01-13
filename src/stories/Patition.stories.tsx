@@ -20,7 +20,7 @@ const Template: ComponentStory<typeof DataPatition> = (args) => (
 export const Demo = Template.bind({});
 Demo.args = {
   valueInput: 4,
-  item: 5,
-  dataP: 70,
-  lenghtonClick: 10,
+  items: 5,
+  data: 70,
+  NumberOfPagesClick: 10,
 };

@@ -4,23 +4,23 @@ import { Patition } from './Patition';
 
 interface PaginationProps {
   valueInput: number;
-  item: number;
-  lenghtonClick: number;
-  dataP: number;
+  items: number;
+  NumberOfPagesClick: number;
+  data: number;
 }
 
-const DataPatition = ({ dataP, valueInput, item, lenghtonClick }: PaginationProps) => {
+const DataPatition = ({ data, valueInput, items, NumberOfPagesClick }: PaginationProps) => {
   const [value, setValue] = useState<any>(1);
   const valueRef = useRef<any>(value);
-  const arr = new Array(dataP);
+  const arr = new Array(data);
 
   const dataC = arr.fill(1).map((item, index) => {
     return { id: index++, name: index++ };
   });
-  const data = dataC || Data;
+  const dataPG = dataC || Data;
 
-  const dataLenght = data.length;
-  const patitionLenght = Math.ceil(dataLenght / item);
+  const dataLenght = dataPG.length;
+  const patitionLenght = Math.ceil(dataLenght / items);
 
   useEffect(() => {
     if (valueInput <= patitionLenght && valueInput >= 1) {
@@ -29,27 +29,25 @@ const DataPatition = ({ dataP, valueInput, item, lenghtonClick }: PaginationProp
       setValue(1);
     }
   }, [valueInput, patitionLenght]);
-  console.log('cha', value);
 
   useEffect(() => {
     valueRef.current = value;
   }, [value]);
-  console.log(data);
 
-  const datapatition = data.filter((arr, index) => {
-    if (index >= value * item - item && index < value * item) {
+  const datapatition = dataPG.filter((arr, index) => {
+    if (index >= value * items - items && index < value * items) {
       return arr;
     } else if (
       value == '' &&
-      index >= valueRef.current * item - item &&
-      index < valueRef.current * item
+      index >= valueRef.current * items - items &&
+      index < valueRef.current * items
     ) {
       return arr;
     }
   });
 
   return (
-    <div>
+    <div className='mt-32'>
       <div className='gap-5 flex justify-center items-center w-full '>
         {datapatition.map((data: any) => (
           <h1
@@ -65,7 +63,7 @@ const DataPatition = ({ dataP, valueInput, item, lenghtonClick }: PaginationProp
           value={value}
           setValue={setValue}
           patitionLenght={patitionLenght}
-          lenghtonClick={lenghtonClick}
+          lenghtonClick={NumberOfPagesClick}
           dataLenght={dataLenght}
         />
       </div>
