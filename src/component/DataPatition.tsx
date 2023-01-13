@@ -50,12 +50,12 @@ const DataPatition = ({ data, valueInput, items, NumberOfPagesClick }: Paginatio
     <div className='mt-32'>
       <div className='gap-5 flex justify-center items-center w-full '>
         {datapatition.map((data: any) => (
-          <h1
+          <p
             className='w-11 bg-amber-300 font-normal text-xl  h-11 text-center top-0 bottom-0 my-auto mb-11 '
             key={data.id}
           >
             {data.name}
-          </h1>
+          </p>
         ))}
       </div>
       <div>

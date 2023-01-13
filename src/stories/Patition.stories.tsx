@@ -2,8 +2,6 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import '../index.css';
 import DataPatition from '../component/DataPatition';
-import { within } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 export default {
   title: 'Example/ patition',
