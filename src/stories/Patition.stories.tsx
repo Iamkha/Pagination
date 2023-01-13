@@ -24,12 +24,3 @@ Demo.args = {
   dataP: 70,
   lenghtonClick: 10,
 };
-Demo.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const Input = canvas.getByLabelText('name', {
-    selector: 'input',
-  });
-  await userEvent.type(Input, 'WrongInput', {
-    delay: 100,
-  });
-};

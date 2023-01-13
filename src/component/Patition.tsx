@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 
-import {
-  AiOutlineLeft,
-  AiOutlineDoubleLeft,
-  AiOutlineDoubleRight,
-  AiOutlineRight,
-} from 'react-icons/ai';
+import { FaAngleDoubleLeft, FaAngleLeft, FaAngleRight, FaAngleDoubleRight } from 'react-icons/fa';
 
 type Props = {
   patitionLenght: number;
@@ -15,9 +10,6 @@ type Props = {
   setValue: any;
 };
 export const Patition = ({ patitionLenght, lenghtonClick, dataLenght, value, setValue }: Props) => {
-  // const [value, setValue] = useState<any>(1);
-  console.log(value);
-
   const handleonClickLeft = () => {
     setValue(Math.max(value - lenghtonClick, 1));
   };
@@ -44,22 +36,22 @@ export const Patition = ({ patitionLenght, lenghtonClick, dataLenght, value, set
         <div className='flex justify-center items-center gap-5'>
           <p className=' text-lg font-semibold'>{dataLenght} items</p>
           <button
-            className='w-[35px] h-[35px] border-2 border-solid flex justify-center items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700 disabled:opacity-75 disabled:border-none'
+            className='w-[35px] h-[35px] border-2 border-solid border-gray-300 flex justify-center  disabled:text-slate-600 items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700  hover:shadow-md disabled:opacity-75 disabled:border-none'
             disabled={value <= 1}
             onClick={handleonClickLeft}
           >
-            <AiOutlineDoubleLeft className='icons' />
+            <FaAngleDoubleLeft className='text-md font-normal text-gray-800 ' />
           </button>
           <button
-            className='w-[35px] h-[35px] border-2 border-solid flex justify-center items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700 disabled:opacity-75 disabled:border-none'
+            className='w-[35px] h-[35px] border-2 border-solid border-gray-300 flex justify-center disabled:text-slate-600 items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700  hover:shadow-md disabled:opacity-75 disabled:border-none'
             disabled={value <= 1}
             onClick={handleonClickpaginationLeft}
           >
-            <AiOutlineLeft className='icons' />
+            <FaAngleLeft className='text-md font-normal text-gray-800 ' />
           </button>
           <input
             aria-label='name'
-            className='w-[40px] h-[35px] border border-solid text-center  shadow-sm'
+            className='w-[40px] h-[35px] border-gray-300 focus:outline-none focus:border-gray-600 focus:ring-1 focus:ring-gray-400 border border-solid text-center  shadow-sm'
             type={'number'}
             value={value}
             onChange={(e) => {
@@ -74,18 +66,18 @@ export const Patition = ({ patitionLenght, lenghtonClick, dataLenght, value, set
           />
           <p className='font-semibold text-base '> of {patitionLenght}</p>
           <button
-            className='w-[35px] h-[35px] border-2 border-solid flex justify-center items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700 disabled:opacity-75 disabled:border-none'
+            className='w-[35px] h-[35px] border-2 border-solid border-gray-300 flex justify-center disabled:text-slate-600 items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700  hover:shadow-md disabled:opacity-75 disabled:border-none'
             disabled={value >= patitionLenght}
             onClick={handleonClickpaginationRight}
           >
-            <AiOutlineRight className='icons' />
+            <FaAngleRight className='text-md font-normal text-gray-800 ' />
           </button>
           <button
-            className='w-[35px] h-[35px] border-2 border-solid flex justify-center items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700 disabled:opacity-75 disabled:border-none'
+            className='w-[35px] h-[35px] border-2 border-solid border-gray-300 flex justify-center disabled:text-slate-600 items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700  hover:shadow-md disabled:opacity-75 disabled:border-none'
             disabled={value >= patitionLenght}
             onClick={handleonClickRight}
           >
-            <AiOutlineDoubleRight className='icons' />
+            <FaAngleDoubleRight className='text-md font-normal text-gray-800 ' />
           </button>
         </div>
       </div>

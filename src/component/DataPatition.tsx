@@ -15,7 +15,7 @@ const DataPatition = ({ dataP, valueInput, item, lenghtonClick }: PaginationProp
   const arr = new Array(dataP);
 
   const dataC = arr.fill(1).map((item, index) => {
-    return { id: ++index, name: ++index };
+    return { id: index++, name: index++ };
   });
   const data = dataC || Data;
 
@@ -29,10 +29,12 @@ const DataPatition = ({ dataP, valueInput, item, lenghtonClick }: PaginationProp
       setValue(1);
     }
   }, [valueInput, patitionLenght]);
+  console.log('cha', value);
 
   useEffect(() => {
     valueRef.current = value;
   }, [value]);
+  console.log(data);
 
   const datapatition = data.filter((arr, index) => {
     if (index >= value * item - item && index < value * item) {
