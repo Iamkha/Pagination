@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-import { FaAngleDoubleLeft, FaAngleLeft, FaAngleRight, FaAngleDoubleRight } from 'react-icons/fa';
+import {
+  CgChevronLeft,
+  CgChevronDoubleLeft,
+  CgChevronRight,
+  CgChevronDoubleRight,
+} from 'react-icons/cg';
 
 type Props = {
   patitionLenght: number;
@@ -38,14 +43,14 @@ export const Patition = ({ patitionLenght, lenghtonClick, dataLenght, value, set
         disabled={value <= 1}
         onClick={handleonClickLeft}
       >
-        <FaAngleDoubleLeft className='text-md font-normal text-gray-800 ' />
+        <CgChevronDoubleLeft className='text-xl font-black text-gray-800 ' />
       </button>
       <button
         className='w-[35px] h-[35px] border-2 border-solid border-gray-300 flex justify-center disabled:text-slate-600 items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700  hover:shadow-md disabled:opacity-75 disabled:border-none'
         disabled={value <= 1}
         onClick={handleonClickpaginationLeft}
       >
-        <FaAngleLeft className='text-md font-normal text-gray-800 ' />
+        <CgChevronLeft className='text-xl font-black text-gray-800 ' />
       </button>
       <input
         aria-label='name'
@@ -68,14 +73,14 @@ export const Patition = ({ patitionLenght, lenghtonClick, dataLenght, value, set
         disabled={value >= patitionLenght}
         onClick={handleonClickpaginationRight}
       >
-        <FaAngleRight className='text-md font-normal text-gray-800 ' />
+        <CgChevronRight className='text-xl font-black text-gray-800 ' />
       </button>
       <button
         className='w-[35px] h-[35px] border-2 border-solid border-gray-300 flex justify-center disabled:text-slate-600 items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700  hover:shadow-md disabled:opacity-75 disabled:border-none'
         disabled={value >= patitionLenght}
         onClick={handleonClickRight}
       >
-        <FaAngleDoubleRight className='text-md font-normal text-gray-800 ' />
+        <CgChevronDoubleRight className='text-xl font-black text-gray-800 ' />
       </button>
     </div>
   );
