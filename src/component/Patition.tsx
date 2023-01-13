@@ -1,41 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Data } from '../fakeData/Data';
+import React, { useState } from 'react';
+
 import {
   AiOutlineLeft,
   AiOutlineDoubleLeft,
   AiOutlineDoubleRight,
   AiOutlineRight,
 } from 'react-icons/ai';
-import Button from './Button';
 
-interface PaginationProps {
-  valueInput: number;
-  lenght: number;
-  item: number;
+type Props = {
+  patitionLenght: number;
   lenghtonClick: number;
-}
-export const Patition = ({ valueInput, lenght, item, lenghtonClick }: PaginationProps) => {
-  const [value, setValue] = useState<any>(1);
-  const valueRef = useRef<any>(value);
-
-  const dataLenght = lenght || Data.length;
-  const patitionLenght = Math.ceil(dataLenght / item);
-
-  const datapatition = Data.filter((arr, index) => {
-    if (index >= value * item - item && index < value * item) {
-      return arr;
-    } else if (
-      value == '' &&
-      index >= valueRef.current * item - item &&
-      index < valueRef.current * item
-    ) {
-      return arr;
-    }
-  });
-
-  useEffect(() => {
-    valueRef.current = value;
-  }, [value]);
+  dataLenght: number;
+  value: any;
+  setValue: any;
+};
+export const Patition = ({ patitionLenght, lenghtonClick, dataLenght, value, setValue }: Props) => {
+  // const [value, setValue] = useState<any>(1);
+  console.log(value);
 
   const handleonClickLeft = () => {
     setValue(Math.max(value - lenghtonClick, 1));
@@ -59,16 +40,6 @@ export const Patition = ({ valueInput, lenght, item, lenghtonClick }: Pagination
 
   return (
     <div>
-      <div className='gap-5 flex justify-center items-center w-full '>
-        {datapatition.map((data: any) => (
-          <h1
-            className='w-11 bg-amber-300 font-normal text-xl  h-11 text-center top-0 bottom-0 my-auto mb-11 '
-            key={data.id}
-          >
-            {data.name}
-          </h1>
-        ))}
-      </div>
       <div>
         <div className='flex justify-center items-center gap-5'>
           <p className=' text-lg font-semibold'>{dataLenght} items</p>
@@ -87,6 +58,7 @@ export const Patition = ({ valueInput, lenght, item, lenghtonClick }: Pagination
             <AiOutlineLeft className='icons' />
           </button>
           <input
+            aria-label='name'
             className='w-[40px] h-[35px] border border-solid text-center  shadow-sm'
             type={'number'}
             value={value}
