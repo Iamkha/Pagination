@@ -14,10 +14,10 @@ const DataPatition = ({ data, valueInput, items, NumberOfPagesClick }: Paginatio
   const valueRef = useRef<any>(value);
   const arr = new Array(data);
 
-  const dataC = arr.fill(1).map((item, index) => {
+  const dataInput = arr.fill(1).map((item, index) => {
     return { id: index++, name: index++ };
   });
-  const dataPG = dataC || Data;
+  const dataPG = dataInput || Data;
 
   const dataLenght = dataPG.length;
   const patitionLenght = Math.ceil(dataLenght / items);
@@ -34,7 +34,7 @@ const DataPatition = ({ data, valueInput, items, NumberOfPagesClick }: Paginatio
     valueRef.current = value;
   }, [value]);
 
-  const datapatition = dataPG.filter((arr, index) => {
+  const dataPatition = dataPG.filter((arr, index) => {
     if (index >= value * items - items && index < value * items) {
       return arr;
     } else if (
@@ -48,12 +48,9 @@ const DataPatition = ({ data, valueInput, items, NumberOfPagesClick }: Paginatio
 
   return (
     <div className='mt-32'>
-      <div className='gap-5 flex justify-center items-center w-full '>
-        {datapatition.map((data: any) => (
-          <p
-            className='w-11 bg-amber-300 font-normal text-xl  h-11 text-center top-0 bottom-0 my-auto mb-11 '
-            key={data.id}
-          >
+      <div className='gap-5 flex justify-center items-center mb-9 w-full '>
+        {dataPatition.map((data: any) => (
+          <p className='w-11 bg-amber-300 font-normal text-xl  h-11 text-center ' key={data.id}>
             {data.name}
           </p>
         ))}
