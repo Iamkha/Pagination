@@ -58,7 +58,7 @@ export const Patition = ({ patitionLenght, lenghtonClick, dataLenght, value, set
         className='w-[40px] h-[35px] border-gray-300 font-medium focus:outline-none focus:border-gray-600 focus:ring-1 focus:ring-gray-400 border border-solid text-center  shadow-sm'
         type={'number'}
         value={value}
-        onChange={(e) => {
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           const page =
             +e.target.value > patitionLenght
               ? 1
