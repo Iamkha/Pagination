@@ -1,3 +1,4 @@
+import React, { useEffect, useRef } from 'react';
 import {
   CgChevronLeft,
   CgChevronDoubleLeft,
@@ -13,6 +14,7 @@ type Props = {
   setValue: any;
 };
 export const Patition = ({ patitionLenght, lenghtonClick, dataLenght, value, setValue }: Props) => {
+  const inputRef = useRef<any>();
   const handleonClickLeft = () => {
     setValue(Math.max(value - lenghtonClick, 1));
   };
@@ -51,6 +53,7 @@ export const Patition = ({ patitionLenght, lenghtonClick, dataLenght, value, set
         <CgChevronLeft className='text-xl font-black text-gray-800 ' />
       </button>
       <input
+        ref={inputRef}
         aria-label='name'
         className='w-[40px] h-[35px] border-gray-300 font-medium focus:outline-none focus:border-gray-600 focus:ring-1 focus:ring-gray-400 border border-solid text-center  shadow-sm'
         type={'number'}
@@ -64,7 +67,13 @@ export const Patition = ({ patitionLenght, lenghtonClick, dataLenght, value, set
               : +e.target.value;
           setValue(page === 0 ? '' : page);
         }}
+        onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
+          if (!e.target.value) {
+            inputRef.current.focus();
+          }
+        }}
       />
+
       <p className='font-semibold text-base '> of {patitionLenght}</p>
       <button
         className='w-[35px] h-[35px] border-2 border-solid border-gray-300 flex justify-center disabled:text-slate-600 items-center cursor-pointer bg-slate-100 rounded-md shadow-sm hover:border-sky-700  hover:shadow-md disabled:opacity-75 disabled:border-none'
